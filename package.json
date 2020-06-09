@@ -1,0 +1,15 @@
+{
+  "name": "quick.db-rewrite",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "dependencies": {
+    "node-addon-api": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild -j 8 --directory=src"
+  },
+  "author": "Alexander9673",
+  "license": "MIT"
+}
