@@ -1,15 +1,26 @@
 {
-  "name": "quick.db-rewrite",
+  "name": "quick.db",
   "version": "0.1.0",
-  "description": "",
+  "description": "A rewrite of the current quick.db to make it minimal and fast",
   "main": "./lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "dependencies": {
     "node-addon-api": "^3.0.0"
   },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "node-gyp rebuild -j 8 --directory=src"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexander9673/quick.db.git"
   },
   "author": "Alexander9673",
-  "license": "MIT"
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/Alexander9673/quick.db/issues"
+  },
+  "homepage": "https://github.com/Alexander9673/quick.db#readme"
 }
