@@ -194,6 +194,11 @@ Boolean __delete_data(const CallbackInfo& info) {
   rc = sqlite3_prepare_v2(db, sql.c_str(), strlen(sql.c_str()), &stmt, NULL);
   rc = sqlite3_bind_text(stmt, 1, key.c_str(), strlen(key.c_str()), NULL);
 
+  if (rc != SQLITE_OK) {
+    cout << sqlite3_errmsg(db);
+    exit(0);
+  }
+
   sqlite3_step(stmt);
   sqlite3_finalize(stmt);
 

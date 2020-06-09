@@ -29,8 +29,7 @@
         }]
       ],
 
-      "cflags!": ["-fexceptions"],
-      "cflags_cc!": ["-fexceptions"],
+      "cflags_cc": ["-fexceptions"],
 
       "msvs_settings": {
         "VCCLCompilerTool": {
