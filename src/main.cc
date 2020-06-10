@@ -5,7 +5,7 @@
 using namespace std;
 using namespace Napi;
 
-string table_name;
+string table_name = "data";
 sqlite3* db;
 
 void __init_sqlite() {
@@ -24,7 +24,7 @@ void __init_sqlite() {
     "ID text primary key," \
     "json text);";
 
-  rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
+  rc = sqlite3_prepare_v2(db, sql.c_str(), strlen(sql.c_str()), &stmt, NULL);
 
   if (rc != SQLITE_OK) {
     cout << sqlite3_errmsg(db) << endl;
@@ -35,19 +35,21 @@ void __init_sqlite() {
   sqlite3_finalize(stmt);
 
   sql = "PRAGMA synchronous = OFF;";
-  rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
+  rc = sqlite3_prepare_v2(db, sql.c_str(), strlen(sql.c_str()), &stmt, NULL);
   sqlite3_step(stmt);
 
   sqlite3_finalize(stmt);
 
-  sql = "PRAGMA journal_mode = MEMORY;";
-  rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL);
+  sql = "PRAGMA journal_mode = WAL;";
+  rc = sqlite3_prepare_v2(db, sql.c_str(), strlen(sql.c_str()), &stmt, NULL);
   sqlite3_step(stmt);
 
   sqlite3_finalize(stmt);
 }
 
 void __set_data(const CallbackInfo& info) {
+  if (db == nullptr) __init_sqlite();
+
   Env env = info.Env();
   string key = info[0].As<String>().Utf8Value();
 
@@ -89,6 +91,8 @@ void __set_data(const CallbackInfo& info) {
 }
 
 Value __get_data(const CallbackInfo& info) {
+  if (db == nullptr) __init_sqlite();
+
   Env env = info.Env();
   string key = info[0].As<String>().Utf8Value();
   Value data;
@@ -121,6 +125,8 @@ Value __get_data(const CallbackInfo& info) {
 }
 
 Value __get_all_data(const CallbackInfo& info) {
+  if (db == nullptr) __init_sqlite();
+
   Env env = info.Env();
   Value data = Array::New(env);
   int arr_pos = 0;
@@ -156,6 +162,8 @@ Value __get_all_data(const CallbackInfo& info) {
 }
 
 Value __has_data(const CallbackInfo& info) {
+  if (db == nullptr) __init_sqlite();
+
   Env env = info.Env();
   string key = info[0].As<String>().Utf8Value();
   string sql;
@@ -184,6 +192,8 @@ Value __has_data(const CallbackInfo& info) {
 }
 
 Boolean __delete_data(const CallbackInfo& info) {
+  if (db == nullptr) __init_sqlite();
+  
   Env env = info.Env();
   string key = info[0].As<String>().Utf8Value(); 
   string sql;
