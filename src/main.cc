@@ -5,6 +5,7 @@
 using namespace std;
 using namespace Napi;
 
+string db_name;
 string table_name = "data";
 sqlite3* db;
 
@@ -13,9 +14,9 @@ void __init_sqlite() {
   string sql;
   sqlite3_stmt* stmt;
 
-  rc = sqlite3_open("quickdb.sqlite", &db);
+  rc = sqlite3_open(db_name.empty() ? "quickdb.sqlite" : db_name.c_str(), &db);
 
-  if (rc) {
+  if (rc != SQLITE_OK) {
     cout << "can't open database" << endl;
     exit(0);
   }
@@ -193,7 +194,7 @@ Value __has_data(const CallbackInfo& info) {
 
 Boolean __delete_data(const CallbackInfo& info) {
   if (db == nullptr) __init_sqlite();
-  
+
   Env env = info.Env();
   string key = info[0].As<String>().Utf8Value(); 
   string sql;
@@ -220,6 +221,11 @@ void __set_table_name(const CallbackInfo& info) {
   __init_sqlite();
 }
 
+void __change_database(const CallbackInfo& info) {
+  db_name = info[0].As<String>().Utf8Value();
+  __init_sqlite();
+}
+
 Object Init(Env env, Object exports) {
   exports.Set(String::New(env, "set"), Function::New(env, __set_data));
   exports.Set(String::New(env, "get"), Function::New(env, __get_data));
@@ -227,6 +233,7 @@ Object Init(Env env, Object exports) {
   exports.Set(String::New(env, "has"), Function::New(env, __has_data));
   exports.Set(String::New(env, "delete"), Function::New(env, __delete_data));
   exports.Set(String::New(env, "table"), Function::New(env, __set_table_name));
+  exports.Set(String::New(env, "database"), Function::New(env, __change_database));
   return exports;
 }
 

@@ -35,11 +35,18 @@ declare function has(key: string): boolean;
 declare function remove(key: string): boolean;
 
 /**
- * The quick.db class, it contains the same methods as the previous ones. Can be used to initiate/create a new table instead of .table
- * @param table_name The name of the table to use
+ * Sets the name/path of the database to use
+ * @param name The name/path of the database
  */
-declare class Table {
-  constructor(table_name: string);
+declare function database(name: string): void;
+
+/**
+ * The Database class, it contains the same methods as the previous ones. Can be used to initiate/create a new table or database instead of .table or .database
+ * @param table_name The name of the table to use
+ * @param database_name Name of the database file (must end with .sqlite)
+ */
+declare class Database {
+  constructor(table_name: string, database_name?: string);
   /**
    * Sets the table name
    * @param name The name of the table to use
@@ -83,5 +90,5 @@ export const _default: {
   all: typeof all;
   has: typeof has;
   remove: typeof remove;
-  Table: typeof Table;
+  Table: typeof Database;
 }
