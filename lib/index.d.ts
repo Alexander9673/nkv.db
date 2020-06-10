@@ -39,8 +39,7 @@ declare function remove(key: string): boolean;
  * @param table_name The name of the table to use
  */
 declare class Table {
-  constructor(public table_name: string) {}
-
+  constructor(table_name: string);
   /**
    * Sets the table name
    * @param name The name of the table to use
