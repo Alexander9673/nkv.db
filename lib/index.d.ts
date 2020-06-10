@@ -58,7 +58,7 @@ declare class Table {
    * Fetches data from the table with its identifier
    * @param key The identifier for the data to fetch
    */
-  public get(): any;
+  public get(key: string): any;
 
   /**
    * Returns all the identifiers and its values in an array
