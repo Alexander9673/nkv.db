@@ -236,4 +236,4 @@ Object Init(Env env, Object exports) {
   return exports;
 }
 
-NODE_API_MODULE(quickdb, Init)
+NODE_API_MODULE(nkvdb, Init)
