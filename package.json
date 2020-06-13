@@ -1,6 +1,6 @@
 {
   "name": "nkv.db",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An easy to use and fast key-value database for sqlite3 written in C++ as a NodeJS module.",
   "main": "./lib/index.js",
   "directories": {
