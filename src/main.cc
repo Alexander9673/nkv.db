@@ -218,7 +218,6 @@ Boolean __delete_data(const CallbackInfo& info) {
 
 void __set_table_name(const CallbackInfo& info) {
   table_name = info[0].As<String>().Utf8Value();
-  __init_sqlite();
 }
 
 void __change_database(const CallbackInfo& info) {
