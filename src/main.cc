@@ -14,7 +14,7 @@ void __init_sqlite() {
   string sql;
   sqlite3_stmt* stmt;
 
-  rc = sqlite3_open(db_name.empty() ? "quickdb.sqlite" : db_name.c_str(), &db);
+  rc = sqlite3_open(db_name.empty() ? "nkv.sqlite" : db_name.c_str(), &db);
 
   if (rc != SQLITE_OK) {
     cout << "can't open database" << endl;

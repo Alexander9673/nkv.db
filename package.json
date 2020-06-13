@@ -1,7 +1,7 @@
 {
-  "name": "quick.db",
+  "name": "nkv.db",
   "version": "0.1.0",
-  "description": "A rewrite of the current quick.db to make it minimal and fast",
+  "description": "An easy to use and fast key-value database for sqlite3 written in C++ as a NodeJS module.",
   "main": "./lib/index.js",
   "directories": {
     "lib": "lib"
@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Alexander9673/quick.db.git"
+    "url": "git+https://github.com/Alexander9673/nkv.db.git"
   },
   "author": "Alexander9673",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Alexander9673/quick.db/issues"
+    "url": "https://github.com/Alexander9673/nkv.db/issues"
   },
-  "homepage": "https://github.com/Alexander9673/quick.db#readme"
+  "homepage": "https://github.com/Alexander9673/nkv.db#readme"
 }

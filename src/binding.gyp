@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "quick.db",
+      "target_name": "nkv.db",
       "sources": [
         "main.cc"
       ],
